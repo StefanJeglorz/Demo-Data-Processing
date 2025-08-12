@@ -1,10 +1,19 @@
 using DemoDataProcessing.Components;
+using DemoDataProcessing.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+
+builder.Services.AddDbContext<MyDbContext>(options =>
+{
+    options.UseInMemoryDatabase("Database");
+});
+
 
 var app = builder.Build();
 
